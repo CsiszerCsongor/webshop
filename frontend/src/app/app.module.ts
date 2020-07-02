@@ -14,6 +14,8 @@ import { FormsModule } from '@angular/forms';
 import { FooterBarComponent } from './footer-bar/footer-bar.component';
 import { BigNewsComponent } from './big-news/big-news.component';
 import { NavigationBarComponent } from './navigation-bar/navigation-bar.component';
+import { MatListModule } from '@angular/material/list';
+import { MatMenuModule } from '@angular/material/menu';
 import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
@@ -33,6 +35,8 @@ import { HttpClientModule } from '@angular/common/http';
     MatInputModule,
     MatIconModule,
     FormsModule,
+    MatListModule,
+    MatMenuModule,
     HttpClientModule
   ],
   providers: [],

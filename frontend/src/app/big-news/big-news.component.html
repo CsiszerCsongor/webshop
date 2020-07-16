@@ -4,29 +4,9 @@
   <div class="split left">
     <div class="centered">
       <ul class="menu-ul" (mouseover)="setSubmenuDisplayTrue()" (mouseout)="setSubmenuFalseAfterDelay()">
-        <li>
+        <li *ngFor="let productCategory of productCategories">
           <a href="#">
-            Alma
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            Korte
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            Szilva
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            Kamilla
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            Kaja
+            {{productCategory.productCategoryName}}
           </a>
         </li>
       </ul>

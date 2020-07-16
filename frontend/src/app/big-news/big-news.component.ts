@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { ProductCategory } from '../shared/models/product-category.model';
+import { HttpClient } from '@angular/common/http';
+import {Observable} from 'rxjs';
+import { map } from 'rxjs/operators';
+import {catchError} from 'rxjs/operators';
 
 @Component({
   selector: 'app-big-news',
@@ -7,14 +12,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BigNewsComponent implements OnInit {
 
-  showSubmenuDiv: boolean = false;
-  cursorOnSubmenu: boolean = false;
+  private showSubmenuDiv: boolean = false;
+  private cursorOnSubmenu: boolean = false;
+  private productCategories: ProductCategory[] = [];
 
-  delay2 = (ms: number) => new Promise(res => setTimeout(res, ms));
+  private getProductCategoriesListUrl: string = "http://localhost:8080/productCategory/categories";
 
-  constructor() { }
+  private delay2 = (ms: number) => new Promise(res => setTimeout(res, ms));
+
+  constructor(private httpClient: HttpClient) { }
 
   ngOnInit() {
+    this.getProductCategories();
   }
 
   async delay(ms: number) {
@@ -37,6 +46,23 @@ export class BigNewsComponent implements OnInit {
   cursorNotOnSubmenu(): void {
     if(this.showSubmenuDiv)
     this.showSubmenuDiv = false;
+  }
+
+  getProductCategories(){
+    this.getProductCategoriesHttp().subscribe(productCategories =>
+      {
+        this.productCategories = productCategories
+        console.log(this.productCategories);
+      });
+  }
+
+  getProductCategoriesHttp(): Observable<ProductCategory[]> {
+    if(this.productCategories.length == 0){
+      return this.httpClient.get<ProductCategory[]>(this.getProductCategoriesListUrl)
+      .pipe(
+        map(data => data.map(data => new ProductCategory().deserialize(data)))
+      )
+    }
   }
 
 }

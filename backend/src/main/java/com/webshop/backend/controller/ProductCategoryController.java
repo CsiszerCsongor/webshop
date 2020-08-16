@@ -1,6 +1,7 @@
 package com.webshop.backend.controller;
 
 import com.webshop.backend.dto.ProductCategoryDTO;
+import com.webshop.backend.dto.ProductCategorySubcategoryDTO;
 import com.webshop.backend.model.ProductCategory;
 import com.webshop.backend.service.ProductCategoryService;
 import java.util.List;
@@ -20,8 +21,8 @@ public class ProductCategoryController {
   private ProductCategoryService productCategoryService;
 
   @GetMapping("/categories")
-  public List<ProductCategoryDTO> getCategories(){
-    return productCategoryService.getAllProductCategory();
+  public List<ProductCategorySubcategoryDTO> getCategories(){
+    return productCategoryService.getAllProductCategoryWithSubcategories();
   }
 
 }

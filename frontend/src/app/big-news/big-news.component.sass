@@ -2,6 +2,9 @@ $font-color-default: #67AFCC
 $font-color-hover: white
 $background-color-default: white
 $background-color-hover: #67AFCC
+$submenu-color-default: #115571
+$submenu-color-hover: $background-color-hover
+
 
 .big-news-container
   width: 100%
@@ -50,5 +53,22 @@ $background-color-hover: #67AFCC
   height: 700px
   background-color: $background-color-default
   box-shadow: 0 4px 8px 10px rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)
-  z-index: 10
   position: relative
+
+  div
+    ul li a
+      color: $submenu-color-default
+
+      &:hover
+        color: $submenu-color-hover
+
+div#leftSide
+  width: 50%
+  height: 100%
+  float: left
+
+div#rightSide
+  width: 50%
+  height: 100%
+  float: left
+  color: $submenu-color-default

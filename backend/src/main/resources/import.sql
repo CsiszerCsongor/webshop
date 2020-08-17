@@ -165,7 +165,7 @@ INSERT INTO PRODUCT_SUBCATEGORIES (id, name, product_category_id) VALUES(148, 'T
 INSERT INTO PRODUCT_SUBCATEGORIES (id, name, product_category_id) VALUES(149, 'Súlyzók',11);
 INSERT INTO PRODUCT_SUBCATEGORIES (id, name, product_category_id) VALUES(150, 'Labdák',11);
 INSERT INTO PRODUCT_SUBCATEGORIES (id, name, product_category_id) VALUES(151, 'Sport pólók',11);
-INSERT INTO PRODUCT_SUBCATEGORIES (id, name, product_category_id) VALUES(152, 'sport nadrágok',11);
+INSERT INTO PRODUCT_SUBCATEGORIES (id, name, product_category_id) VALUES(152, 'Sport nadrágok',11);
 INSERT INTO PRODUCT_SUBCATEGORIES (id, name, product_category_id) VALUES(153, 'Kerékpárok',11);
 INSERT INTO PRODUCT_SUBCATEGORIES (id, name, product_category_id) VALUES(154, 'Kerékpáros gyerekülések',11);
 INSERT INTO PRODUCT_SUBCATEGORIES (id, name, product_category_id) VALUES(155, 'Túrahátizsákok',11);
@@ -214,3 +214,8 @@ INSERT INTO PRODUCT_SUBCATEGORIES (id, name, product_category_id) VALUES(197, 'D
 INSERT INTO PRODUCT_SUBCATEGORIES (id, name, product_category_id) VALUES(198, 'GoodYear gumik',13);
 INSERT INTO PRODUCT_SUBCATEGORIES (id, name, product_category_id) VALUES(199, 'Motorkerékpárok és robogók',13);
 INSERT INTO PRODUCT_SUBCATEGORIES (id, name, product_category_id) VALUES(200, 'Elektromos járművek',13);
+
+
+INSERT INTO TOP_NEWS_IMAGES (id, file_path, is_active, is_deleted) VALUES(1, 'D:\\Programming\\Own\\webshop\\photos\\top-photos\\a4mMgNi6YgizoLMm.PNG',1,0);
+INSERT INTO TOP_NEWS_IMAGES (id, file_path, is_active, is_deleted) VALUES(2, 'D:\\Programming\\Own\\webshop\\photos\\top-photos\\DoOa4xACa9Kai9Ut.PNG',1,0);
+INSERT INTO TOP_NEWS_IMAGES (id, file_path, is_active, is_deleted) VALUES(3, 'D:\\Programming\\Own\\webshop\\photos\\top-photos\\XhPAEcKa5330tC8j.PNG',1,0);

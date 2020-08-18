@@ -1,6 +1,8 @@
 package com.webshop.backend.controller;
 
+import com.webshop.backend.dto.TopNewsImageDTO;
 import com.webshop.backend.fileserrvice.FileService;
+import com.webshop.backend.model.TopNewsImage;
 import com.webshop.backend.service.TopNewsImageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -8,6 +10,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -57,5 +61,14 @@ public class FileController {
         }
 
         return new ResponseEntity(HttpStatus.ACCEPTED);
+    }
+
+    @GetMapping("/image/download/multiple/topNewsImage")
+    public List<TopNewsImageDTO> sendBackTopNewsImage(){
+        try {
+            return topNewsImageService.getTopNewsImage();
+        } catch (IOException ioException) {
+            return null;
+        }
     }
 }

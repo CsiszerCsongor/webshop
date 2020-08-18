@@ -1,0 +1,27 @@
+$button-color: #115571;
+$navigation-background-color: #9ACADD;
+
+nav {
+  border-radius: 5px;
+  background-color: $navigation-background-color;
+}
+
+.navigation-button {
+  background-color:$button-color;
+  border-color: $button-color;
+  color: white;
+}
+
+.navigation-button:hover {
+  background-color: white;
+  border-color: white;
+  color: $button-color;
+  transition: 0.55s;
+}
+
+// .navigation-button-categories
+//   @extend .navigation-button
+//
+//   &:hover
+//     padding-bottom: 20px
+//     transition: 0.55s

@@ -1,18 +1,21 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductCategory } from '../shared/models/product-category.model';
 import { ProductSubcategory } from '../shared/models/product-subcategory.model';
+import { TopNewsImage } from '../shared/models/top-news-image.model';
 import { HttpClient } from '@angular/common/http';
 import {Observable} from 'rxjs';
 import { map } from 'rxjs/operators';
 import {catchError} from 'rxjs/operators';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-big-news',
   templateUrl: './big-news.component.html',
-  styleUrls: ['./big-news.component.sass']
+  styleUrls: ['./big-news.component.scss']
 })
 export class BigNewsComponent implements OnInit {
   private getProductCategoriesListUrl: string = "http://localhost:8080/productCategory/categories";
+  private getImageUrl: string = "http://localhost:8080/file/image/download/multiple/topNewsImage";
 
   private showSubmenuDiv: boolean = false;
   private cursorOnSubmenu: boolean = false;
@@ -22,12 +25,18 @@ export class BigNewsComponent implements OnInit {
   private leftSideSubmenu: ProductSubcategory[] = [];
   private rightSideSubmenu: ProductSubcategory[] = [];
 
-  constructor(private httpClient: HttpClient) { }
+  private topNewsImages: TopNewsImage[] = [];
+  private startIndex: number = 0;
+
+  constructor(private httpClient: HttpClient,
+              private sanitizer: DomSanitizer) { }
 
   ngOnInit() {
     this.getProductCategories();
+    this.getImages();
+    this.Repeat();
   }
-  
+
   setSubmenuDisplayTrue(productId: number): void {
     this.showSubmenuDiv = true;
 
@@ -43,7 +52,6 @@ export class BigNewsComponent implements OnInit {
     this.getProductCategoriesHttp().subscribe(productCategories =>
       {
         this.productCategories = productCategories
-        console.log(this.productCategories);
       });
   }
 
@@ -56,4 +64,60 @@ export class BigNewsComponent implements OnInit {
     }
   }
 
+  getImages(){
+    this.httpClient.get<TopNewsImage[]>(this.getImageUrl)
+    .pipe(
+      map(data => data.map(data => new TopNewsImage().deserialize(data)))
+    ).subscribe(responseList => {
+      this.topNewsImages = responseList;
+
+      this.createImageFromByteData();
+    });
+  }
+
+  createImageFromByteData(){
+    for (let image of this.topNewsImages) {
+      let filledContent = 'data:image/png;base64,' + image.content;
+      if(this.sanitizer === undefined){
+        console.log('Sanitizer is undefined');
+      }
+
+      image.content = this.sanitizer.bypassSecurityTrustUrl(filledContent);
+    }
+
+    /*let objectURL = 'data:image/png;base64,' + response.content;
+    this.image = this.sanitizer.bypassSecurityTrustUrl(objectURL);*/
+  }
+
+
+
+
+  Repeat() {
+    /*  setTimeout(() => {
+        this.__FunctionSlide();
+        this.Repeat();
+      }, 2000);*/
+    }
+
+    __FunctionSlide() {
+      const slides = Array.from(document.getElementsByClassName('mall-show-slide'));
+      if (slides === []) {
+        this.Repeat();
+      }
+      for (const x of slides) {
+        const y = x as HTMLElement;
+        y.style.display = 'none';
+      }
+      if (this.startIndex > slides.length - 1) {
+        this.startIndex = 0;
+        const slide = slides[this.startIndex] as HTMLElement;
+        slide.style.display = 'block';
+        this.startIndex++;
+      } else {
+
+        const slide = slides[this.startIndex] as HTMLElement;
+        slide.style.display = 'block';
+        this.startIndex++;
+      }
+    }
 }

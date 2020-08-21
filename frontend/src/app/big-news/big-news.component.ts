@@ -6,7 +6,7 @@ import { HttpClient } from '@angular/common/http';
 import {Observable} from 'rxjs';
 import { map } from 'rxjs/operators';
 import {catchError} from 'rxjs/operators';
-import { DomSanitizer } from '@angular/platform-browser';
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-big-news',
@@ -27,6 +27,8 @@ export class BigNewsComponent implements OnInit {
 
   private topNewsImages: TopNewsImage[] = [];
   private startIndex: number = 0;
+  private demo_image: SafeUrl;
+  private demo_images: SafeUrl[] = [];
 
   constructor(private httpClient: HttpClient,
               private sanitizer: DomSanitizer) { }
@@ -76,27 +78,22 @@ export class BigNewsComponent implements OnInit {
   }
 
   createImageFromByteData(){
-    for (let image of this.topNewsImages) {
-      let filledContent = 'data:image/png;base64,' + image.content;
-      if(this.sanitizer === undefined){
-        console.log('Sanitizer is undefined');
-      }
-
-      image.content = this.sanitizer.bypassSecurityTrustUrl(filledContent);
+    //let objectURL;
+    for (var index in this.topNewsImages) {
+      console.log('index : ' + index)
+      let filledContent = 'data:image/png;base64,' + this.topNewsImages[index].content;
+      this.demo_images.push(this.sanitizer.bypassSecurityTrustUrl(filledContent));
     }
-
-    /*let objectURL = 'data:image/png;base64,' + response.content;
-    this.image = this.sanitizer.bypassSecurityTrustUrl(objectURL);*/
   }
 
 
 
 
   Repeat() {
-    /*  setTimeout(() => {
+    setTimeout(() => {
         this.__FunctionSlide();
         this.Repeat();
-      }, 2000);*/
+      }, 5000);
     }
 
     __FunctionSlide() {

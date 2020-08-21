@@ -40,39 +40,22 @@
       </div>
 
       <div id="image-container">
-        <!--<img [src]='image' />-->
 
         <div class="mall-slide">
             <div class="slid-content">
-                <div class="mall-show-slide fade" *ngFor="let item of topNewsImages;">
-                    <img src="{{item}}" style="width:100%">
+                <div class="mall-show-slide" *ngFor="let item of demo_images;">
+                    <img [src]="item" style="width:100%">
                 </div>
                 <div class="mall-carousel-ind">
                     <ul>
-                        <li *ngFor="let item of Imagedata; let i = index;" [class.mall-this]="startIndex - 1 === i"></li>
+                        <li *ngFor="let item of demo_images; let i = index;" [class.mall-this]="startIndex - 1 === i"></li>
                     </ul>
                 </div>
             </div>
         </div>
-
       </div>
 
     </div>
+    
   </div>
 </div>
-<!--
-<div class="split left">
-  <div class="centered">
-    <img src="img_avatar2.png" alt="Avatar woman">
-    <h2>Jane Flex</h2>
-    <p>Some text.</p>
-  </div>
-</div>
-
-<div class="split right">
-  <div class="centered">
-    <img src="img_avatar.png" alt="Avatar man">
-    <h2>John Doe</h2>
-    <p>Some text here too.</p>
-  </div>
-</div> -->

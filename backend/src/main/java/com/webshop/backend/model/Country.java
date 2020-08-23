@@ -11,7 +11,7 @@ import javax.persistence.OneToMany;
 import java.util.List;
 
 @Data
-@Entity(name = "COUNTRY")
+@Entity(name = "COUNTRIES")
 @NoArgsConstructor
 @AllArgsConstructor
 public class Country extends BaseEntity {

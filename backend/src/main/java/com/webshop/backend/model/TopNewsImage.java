@@ -18,6 +18,4 @@ public class TopNewsImage extends BaseEntity {
     private String filePath;
     @NonNull
     private boolean isActive;
-    @NonNull
-    private boolean isDeleted;
 }

@@ -8,16 +8,16 @@ import javax.persistence.*;
 import java.util.List;
 
 @Data
-@Entity(name = "PLACES")
+@Entity(name = "ADDRESSES")
 @NoArgsConstructor
 @AllArgsConstructor
-public class Place extends BaseEntity {
-    private String name;
-
+public class Address extends BaseEntity {
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "country_id")
-    private Country country;
+    @JoinColumn(name = "street_id")
+    private Street street;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "place")
-    private List<Street> streetList;
+    private String address;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "address")
+    private List<User> userList;
 }

@@ -219,3 +219,30 @@ INSERT INTO PRODUCT_SUBCATEGORIES (id, name, product_category_id) VALUES(200, 'E
 INSERT INTO TOP_NEWS_IMAGES (id, file_path, is_active, is_deleted) VALUES(1, 'D:\\Programming\\Own\\webshop\\photos\\top-photos\\a4mMgNi6YgizoLMm.PNG',1,0);
 INSERT INTO TOP_NEWS_IMAGES (id, file_path, is_active, is_deleted) VALUES(2, 'D:\\Programming\\Own\\webshop\\photos\\top-photos\\DoOa4xACa9Kai9Ut.PNG',1,0);
 INSERT INTO TOP_NEWS_IMAGES (id, file_path, is_active, is_deleted) VALUES(3, 'D:\\Programming\\Own\\webshop\\photos\\top-photos\\XhPAEcKa5330tC8j.PNG',1,0);
+
+INSERT INTO COUNTRY(id, name) VALUES(1, 'Magyarország');
+INSERT INTO COUNTRY(id, name) VALUES(2, 'România');
+INSERT INTO COUNTRY(id, name) VALUES(3, 'United Kingdom');
+INSERT INTO COUNTRY(id, name) VALUES(4, 'Italiano');
+
+INSERT INTO PLACE(id, name, country_id) VALUES(1, 'Budapest', 1);
+INSERT INTO PLACE(id, name, country_id) VALUES(2, 'Szeged', 1);
+INSERT INTO PLACE(id, name, country_id) VALUES(3, 'Debrecen', 1);
+INSERT INTO PLACE(id, name, country_id) VALUES(4, 'Kecskemét', 1);
+INSERT INTO PLACE(id, name, country_id) VALUES(5, 'Nyíregyháza', 1);
+INSERT INTO PLACE(id, name, country_id) VALUES(6, 'Miercurea-Ciuc(Csíkszereda)', 2);
+INSERT INTO PLACE(id, name, country_id) VALUES(7, 'Odorheiu Secuiesc(Székelyudvarhely)', 2);
+INSERT INTO PLACE(id, name, country_id) VALUES(8, 'Oradea(Nagyvárad)', 2);
+INSERT INTO PLACE(id, name, country_id) VALUES(9, 'Cluj-Napoca(Kolozsvár)', 2);
+INSERT INTO PLACE(id, name, country_id) VALUES(10, 'Târgu Mureș(Marosvásárhely)', 2);
+INSERT INTO PLACE(id, name, country_id) VALUES(11, 'London', 3);
+INSERT INTO PLACE(id, name, country_id) VALUES(12, 'Birmingham', 3);
+INSERT INTO PLACE(id, name, country_id) VALUES(13, 'Oxford', 3);
+INSERT INTO PLACE(id, name, country_id) VALUES(14, 'Newport', 3);
+INSERT INTO PLACE(id, name, country_id) VALUES(15, 'Manchester', 3);
+INSERT INTO PLACE(id, name, country_id) VALUES(16, 'Roma', 4);
+INSERT INTO PLACE(id, name, country_id) VALUES(17, 'Tivoli', 4);
+INSERT INTO PLACE(id, name, country_id) VALUES(18, 'Benevento', 4);
+INSERT INTO PLACE(id, name, country_id) VALUES(19, 'Potenza', 4);
+INSERT INTO PLACE(id, name, country_id) VALUES(20, 'Firenze', 4);
+

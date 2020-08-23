@@ -6,15 +6,16 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import java.util.List;
 
 @Data
-@Entity
+@Entity(name = "COUNTRY")
 @NoArgsConstructor
 @AllArgsConstructor
 public class Country extends BaseEntity {
     private String name;
-    @OneToMany(cascade = CascadeType.ALL,mappedBy = "country")
-    private List<Country> countryList;
+    @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL,mappedBy = "country")
+    private List<Place> placeList;
 }

@@ -1,0 +1,78 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                                       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet author="csongor.zeek@gmail.com" id="create-schema-user-webshop">
+        <sql>
+            CREATE SCHEMA IF NOT EXISTS user_webshop;
+        </sql>
+    </changeSet>
+    
+    <changeSet author="csongor.zeek@gmail.com" id="create-sequence-roles">
+        <createSequence dataType="BIGINT" incrementBy="1" minValue="1"  startValue="1" schemaName="user_webshop"
+                        sequenceName="seq_user_webshop_roles"/>
+    </changeSet>
+
+    <changeSet id="create-user_webshop-roles-table" author="csongor.zeek@gmail.com">
+        <createTable tableName="roles" schemaName="user_webshop">
+            <column name="id" type="bigint">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_roles"/>
+            </column>
+            <column name="role" type="varchar(100)"/>
+            <column name="usable" type="boolean"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="csongor.zeek@gmail.com" id="create-sequence-users">
+        <createSequence dataType="BIGINT" incrementBy="1" minValue="1"  startValue="1" schemaName="user_webshop"
+                        sequenceName="seq_user_webshop_user"/>
+    </changeSet>
+
+    <changeSet author="csongor.zeek@gmail.com" id="create-table-user_webshop-users">
+        <createTable tableName="users" schemaName="user_webshop">
+            <column name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_users"/>
+            </column>
+            <column name="username" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="email" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="password" type="VARCHAR(300)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="facebook_id" type="VARCHAR(300)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="status" type="VARCHAR(30)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="create-table-user_webshop-users_roles" author="csongor.zeek@gmail.com">
+        <createTable tableName="users_roles" schemaName="user_webshop">
+            <column name="user_id" type="bigint"/>
+            <column name="role_id" type="bigint"/>
+        </createTable>
+        <addForeignKeyConstraint
+                constraintName="fk_user_webshop-users_roles--user_webshop-users"
+                baseTableSchemaName="user_webshop"
+                baseTableName="users_roles"
+                baseColumnNames="user_id"
+                referencedTableSchemaName="user_webshop"
+                referencedTableName="users"
+                referencedColumnNames="id"/>
+        <addForeignKeyConstraint
+                constraintName="fk_user_webshop-users_roles--user_webshop-roles"
+                baseTableSchemaName="user_webshop"
+                baseTableName="users_roles"
+                baseColumnNames="role_id"
+                referencedTableSchemaName="user_webshop"
+                referencedTableName="roles"
+                referencedColumnNames="id"/>
+    </changeSet>
+</databaseChangeLog>

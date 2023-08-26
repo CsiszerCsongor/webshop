@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Project:   CK
+  Author:    Magyar Közlöny Lap- és Könyvkiadó Kft.
+  Home page: http://www.mklk.hu
+
+  Copyright (C) [2022] Magyar Közlöny Lap- és Könyvkiadó Kft. All Rights Reserved.
+
+  NOTICE: All information contained herein is, and remains the property of Alone Solution Limited
+  and its suppliers, if any. The intellectual and technical concepts contained herein are
+  proprietary to Alone Solution Limited and its suppliers and may be covered by U.S. and
+  Foreign Patents, patents in process, and are protected by trade secret or copyright law.
+
+  Dissemination of this information or reproduction of this material is strictly forbidden unless
+  prior written permission is obtained from Magyar Közlöny Lap- és Könyvkiadó Kft.
+  -->
+<Configuration status="WARN" monitorInterval="60">
+
+    <Properties>
+        <Property name="BASE_FILE_NAME" value="ck"/>
+        <Property name="LOG_DIR" value="logs"/>
+        <Property name="LOG_PATTERN" value="%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level [%t] %c{1.} - %msg%n"/>
+        <Property name="FILE_NAME_PATTERN" value="${BASE_FILE_NAME}.%d{yyyy-MM-dd}.%i.log.gz"/>
+    </Properties>
+
+    <Appenders>
+        <Console name="ConsoleAppender" target="SYSTEM_OUT">
+            <PatternLayout>
+                <Pattern>${LOG_PATTERN}</Pattern>
+            </PatternLayout>
+        </Console>
+
+        <RollingFile name="FileAppender" fileName="${LOG_DIR}/${BASE_FILE_NAME}.log"
+                     filePattern="${LOG_DIR}/archive/${FILE_NAME_PATTERN}">
+            <PatternLayout>
+                <Pattern>${LOG_PATTERN}</Pattern>
+            </PatternLayout>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+                <SizeBasedTriggeringPolicy size="25MB"/>
+            </Policies>
+            <DefaultRolloverStrategy max="9"/>
+        </RollingFile>
+    </Appenders>
+
+    <Loggers>
+        <Logger name="hu.mklk.mck" level="trace" additivity="false">
+            <AppenderRef ref="ConsoleAppender"/>
+            <AppenderRef ref="FileAppender"/>
+        </Logger>
+        <Logger name="org.hibernate" level="info" additivity="false">
+            <AppenderRef ref="ConsoleAppender"/>
+            <AppenderRef ref="FileAppender"/>
+        </Logger>
+        <Logger name="org.hibernate.SQL" level="info" additivity="false">
+            <AppenderRef ref="ConsoleAppender"/>
+            <AppenderRef ref="FileAppender"/>
+        </Logger>
+        <Logger name="org.hibernate.type" level="info" additivity="false">
+            <AppenderRef ref="ConsoleAppender"/>
+            <AppenderRef ref="FileAppender"/>
+        </Logger>
+        <Logger name="org.springframework.web" level="info" additivity="false">
+            <AppenderRef ref="ConsoleAppender"/>
+            <AppenderRef ref="FileAppender"/>
+        </Logger>
+        <Logger name="org.springframework.ws" level="info" additivity="false">
+            <AppenderRef ref="ConsoleAppender"/>
+            <AppenderRef ref="FileAppender"/>
+        </Logger>
+        <Root level="info">
+            <AppenderRef ref="ConsoleAppender"/>
+            <AppenderRef ref="FileAppender"/>
+        </Root>
+    </Loggers>
+</Configuration>

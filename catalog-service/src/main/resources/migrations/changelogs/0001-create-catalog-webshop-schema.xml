@@ -1,0 +1,30 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                                       https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+    <changeSet author="csongor.zeek@gmail.com" id="create-schema-catalog-webshop">
+        <sql>
+            CREATE SCHEMA IF NOT EXISTS catalog_webshop;
+        </sql>
+    </changeSet>
+
+    <changeSet author="csongor.zeek@gmail.com" id="create-sequence-catalog-webshop-product-category">
+        <createSequence dataType="BIGINT" incrementBy="1" minValue="1" schemaName="catalog_webshop" startValue="1"
+                        sequenceName="seq_catalog_webshop_product_category"/>
+    </changeSet>
+
+    <changeSet author="csongor.zeek@gmail.com" id="create-table-webshop-product-category" created="2023-08-07 13:00:00">
+        <createTable tableName="product_category" schemaName="catalog_webshop">
+            <column name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_product_category"/>
+            </column>
+            <column name="category_name" type="VARCHAR (50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="VARCHAR (200)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>

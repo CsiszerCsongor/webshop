@@ -3,7 +3,7 @@
 <Configuration status="WARN" monitorInterval="60">
 
     <Properties>
-        <Property name="BASE_FILE_NAME" value="order"/>
+        <Property name="BASE_FILE_NAME" value="gateway"/>
         <Property name="LOG_DIR" value="logs"/>
         <Property name="LOG_PATTERN" value="%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level [%t] %c{1.} - %msg%n"/>
         <Property name="FILE_NAME_PATTERN" value="${BASE_FILE_NAME}.%d{yyyy-MM-dd}.%i.log.gz"/>
@@ -51,6 +51,10 @@
             <AppenderRef ref="FileAppender"/>
         </Logger>
         <Logger name="org.springframework.ws" level="info" additivity="false">
+            <AppenderRef ref="ConsoleAppender"/>
+            <AppenderRef ref="FileAppender"/>
+        </Logger>
+        <Logger name="org.springframework.cloud.gateway" level="trace" additivity="false">
             <AppenderRef ref="ConsoleAppender"/>
             <AppenderRef ref="FileAppender"/>
         </Logger>

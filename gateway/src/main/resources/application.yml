@@ -1,0 +1,36 @@
+#spring.application.name=gateway
+#
+#spring.config.import=optional:configserver:http://localhost:8081/
+
+eureka:
+    client:
+        serviceUrl:
+            defaultZone: http://localhost:8085/eureka/
+logging:
+    config: classpath:log4j2/log4j2-spring.xml
+spring:
+  application:
+      name: gateway
+  cloud:
+      gateway:
+          routes:
+          - id: catalog-service
+            uri: lb://catalog-service
+            predicates:
+                - Path=/catalog/**
+            filters:
+                - RewritePath=/catalog(?<remaining>/?.*), /api/catalog$\{remaining}
+          - id: order-service
+            uri: lb://order-service
+            predicates:
+                - Path=/order/**
+            filters:
+                - RewritePath=/order(?<segment>/?.*), /api/order$\{segment}
+          - id: user-service
+            uri: lb://user-service
+            predicates:
+              - Path=/user/**
+            filters:
+              - RewritePath=/user(?<segment>/?.*), /api/user$\{segment}
+server:
+  port: 8080
